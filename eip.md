@@ -65,7 +65,7 @@ Stealth Address Generation
 
 
 ## Rationale
-`EIP-` emerged from the need of having privacy-preserving ways for interacting with non-fungible tokens (NFTs). NFTs can reveal sensitive private information about the owner. The standardization of stealth addresses used of NFTs represents a logical step to increase privacy. While users might want to prove the ownership of a NFT-concert ticket, they might not want to reveal personal account-related information at the same time. Privacy-preserving solutions require standards to gain adoption, therefore it is critical to focus on generalisable ways of implement ownership-proofs into related contracts.
+`EIP-` emerged from the need of having privacy-preserving ways for interacting with non-fungible tokens (NFTs). NFTs can reveal sensitive private information about the owner. While users might want to prove the ownership of a NFT-concert ticket, they might not want to reveal personal account-related information at the same time. The standardization of stealth address generation for NFTs represents a significant step for privacy. Privacy-preserving solutions require standards to gain adoption, therefore it is critical to focus on generalisable ways of implement ownership-proofs into related contracts.
     
 TBD
 This extension standardizes the method to create and look-up Stealth Addresses. 
