@@ -3,7 +3,7 @@ eip: <to be assigned>
 title: ERC-721 zk-Provable Token Extension
 description:  An extension to the ERC-721 standard to introduce private stealth addresses
 author: Anton Wahrstätter (@Nerolation)
-discussions-to: 
+discussions-to: https://ethresear.ch/t/erc721-extension-for-zk-snarks/13237
 status: Idea
 type: Standards Track
 category: ERC
@@ -53,7 +53,7 @@ Stealth Address Generation
  For transfering:
     sharedSecret    = s*P
     stealthAddress  = pubtoaddr(P + (G * keccak(sharedSecret))) # // ``to`` value
-    publishableData = G * s = S // ``publishableData`` value
+    publishableData = G * s = S                                   // ``publishableData`` value
 
     
  For receiving:
