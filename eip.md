@@ -40,10 +40,28 @@ interface ERC0001 /* is ERC721, ERC165 */ {
     event PrivateTransfer(bytes publishableData)
 }
     
-TBD 
-< parts on how to generate stealth address here >
 ```
+    
+Stealth Address Generation
+    
 
+```
+ Sender Keypair    --> (s,S) | S = s * G // s represents a sender-generated secret
+ Recipient Keypair --> (p,P) | P = p * G
+ 
+    
+ For transfering:
+    sharedSecret    = s*P
+    stealthAddress  = pubtoaddr(P + (G * keccak(sharedSecret))) # // ``to`` value
+    publishableData = G * s = S // ``publishableData`` value
+
+    
+ For receiving:
+    forall publishableData `S` do:
+        if pubtoaddr(P + (G * keccak(S * p))) has token:
+            store_key(p + keccak(S * p))
+    
+```
 
 
 ## Rationale
