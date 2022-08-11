@@ -48,13 +48,16 @@ abstract contract ERC721Private is ERC165, ERC721 {
         uint256 tokenId,
         bytes calldata publishableData
     ) internal virtual { 
-
-        super._transfer(from, to, tokenId);
+        super.safeTransferFrom(from, to, tokenId);
         emit PrivateTransfer(publishableData);
     }
 
+    /**
+     * @dev See {IERC165-supportsInterface}.
+     */
     function supportsInterface(bytes4 interfaceId) public view virtual override(ERC165, ERC721) returns (bool) {
-        return interfaceId == type(ERC0001).interfaceId ||
-        super.supportsInterface(interfaceId);
+        return
+            interfaceId == type(ERC0001).interfaceId ||
+            super.supportsInterface(interfaceId);
     }
 }
