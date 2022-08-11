@@ -9,19 +9,7 @@ contract ERC71PrivateMock is ERC721Private {
         string memory symbol
     ) ERC721Private(name, symbol) {}
 
-    function mintToken(address to, uint256 tokenId) public {
-        _mint(to, tokenId);
-    }
-
-    function burnToken(uint256 tokenId) public {
-        _burn(tokenId);
-    }
-
-     function transferToken(address from, address to, uint256 tokenId) public {
-        _transfer(from, to, tokenId);
-    }
-
-    function transferTokenPrivate(address from, address to, uint256 tokenId, bytes calldata publishableData) public {
+    function privateTransferFrom(address from, address to, uint256 tokenId, bytes calldata publishableData) public {
         _transfer(from, to, tokenId, publishableData);
     }
 }
