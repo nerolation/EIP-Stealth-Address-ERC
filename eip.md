@@ -1,15 +1,19 @@
 ---
 eip: <to be assigned>
-title: ERC-721 zk-Provable Token Extension
-description:  An extension to the ERC-721 standard to introduce private stealth addresses
+title: Stealth Address Wallets
+description:  Stealth address generation for smart contract wallets
 author: Anton Wahrstätter (@Nerolation)
 discussions-to: https://ethresear.ch/t/erc721-extension-for-zk-snarks/13237
 status: Idea
 type: Standards Track
 category: ERC
-created: 2022-08-10
-requires: EIP 165, 721
+created: 2022-08-13
+requires: EIP 165
 ---
+    
+# TBD
+    
+    the text below is depr
 
 ## Abstract
 This specification defines an extension to the [ERC-721](https://eips.ethereum.org/EIPS/eip-721) standard. The extension adds standardized stealth addresses to the ERC-721 standard to enable users private token ownership.
