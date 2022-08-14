@@ -20,18 +20,23 @@ contract Wallet {
     * @dev Generates Stealth Address of the smart contract wallet owner.
     *  The caller executes this function locally to compute a stealth address
     *  that can be accessed by the owner of the smart contract.
-    * @notice The public key of the owner must be stored within the contract
+    *  Further, function computes a Public Key of the secret that can be published.
+    * @notice The public key of the owner must be stored within the contract.
     */
-  function generateStealthAddress(uint256 secret) public view returns (address){
-    //  s*P
+  function generateStealthAddress(uint256 secret) public view returns (uint256, uint256, address){
+    //  s*G = S
+    (uint256 pubDataX,uint256 pubDataY) = EllipticCurve.ecMul(secret, GX, GY, AA, PP);
+    //  s*P = q
     (uint256 Qx,uint256 Qy) = EllipticCurve.ecMul(secret, PublicKeyX, PublicKeyY, AA, PP);
     // hash(sharedSecret)
     bytes32 hQ = keccak256(abi.encodePacked(Qx, Qy));
-    // hash to public key
+    // hash value to public key
     (Qx, Qy) = EllipticCurve.ecMul(uint(hQ), GX, GY, AA, PP);
-    // generate address
+    // derive new public key
     (Qx, Qy) = EllipticCurve.ecAdd(PublicKeyX, PublicKeyY, Qx, Qy, AA, PP);
-    // return stealth address
-    return address(uint160(uint256(keccak256(abi.encodePacked(Qx, Qy)))));
+    // generate stealth address
+    address stealthAddress = address(uint160(uint256(keccak256(abi.encodePacked(Qx, Qy)))));
+    // return public key coordinates and stealthAddress
+    return (pubDataX, pubDataY, stealthAddress);
   }
 }
