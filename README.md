@@ -1,4 +1,4 @@
-# EIP-ERC-721-Stealth-Addresses
+# EIP-Stealth-Address-Wallets
 
 Every contribution is welcome!
 
