@@ -20,7 +20,7 @@ interface GnosisSafe {
 contract MyModule is Module {
     address public stealthAddress;
 
-    event PrivateTransfer(bytes publishableData);
+    event PrivateTransfer(address indexed stealthRecipient, bytes publishableData);
 
     constructor(address _owner, address _stealthAddress) {
         bytes memory initializeParams = abi.encode(_owner, _stealthAddress);
@@ -40,9 +40,14 @@ contract MyModule is Module {
     }
 
     // TODO: Add ERC20, ERC721 etc. support
-    function ethTransfer(GnosisSafe safe, address payable to, uint256 amount, bytes calldata S) external payable {
+    function privateETHTransfer(
+        GnosisSafe safe, 
+        address payable to, 
+        uint256 amount, 
+        bytes calldata publishableData
+    ) external payable {
         require(safe.execTransactionFromModule(to, amount, "", Enum.Operation.Call), "Could not execute ether transfer");
-        emit PrivateTransfer(S);
+        emit PrivateTransfer(to, publishableData);
     }    
 }
 
