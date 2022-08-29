@@ -1,7 +1,7 @@
 ---
 eip: <to be assigned>
 title: Stealth Address Wallets
-description:  Stealth address generation for smart contract wallets
+description:  Stealth addresses for smart contract wallets
 author: Anton Wahrstätter (@Nerolation)
 discussions-to: https://ethresear.ch/t/erc721-extension-for-zk-snarks/13237
 status: Idea
@@ -31,7 +31,7 @@ pragma solidity ^0.8.6;
 interface ERC-N {
     
     /// @notice Public Key coordinates of wallet owner
-    /// @dev Is used by other wallets than this to generate stealth address 
+    /// @dev Is used by other wallets to generate stealth addresses 
     ///  on behalve of the wallet owner.
     bytes publicKey;
     
@@ -51,7 +51,7 @@ interface ERC-N {
     ///  The sender broadcasts S for every private transfer. Users can use S to check if they were
     ///  the recipients of a respective transfer.
     /// @param publishableData The public key to the sender's secret
-    event PrivateTransfer(bytes publishableData)
+    event PrivateTransfer(address indexed stealthRecipient, bytes publishableData)
 }
     
 ```
@@ -59,29 +59,36 @@ interface ERC-N {
 Stealth Address Generation
     
 
-```
+
  Sender Keypair    --> (s,S) | S = s * G // s represents a sender-generated secret
+    
  Recipient Keypair --> (p,P) | P = p * G
  
     
- For transfering:
-    sharedSecret    = s*P
-    stealthAddress  = pubtoaddr(P + (G * keccak(sharedSecret))) # // ``to`` value
-    publishableData = G * s = S                                   // ``publishableData`` value
+### For transfering:
+    
+sharedSecret    = s*P
+    
+stealthAddress  = pubtoaddr(P + (G * keccak(sharedSecret)))   // ``to`` value
+    
+publishableData = G * s = S                                   // ``publishableData`` value
+    
 
     
- For receiving:
-    forall publishableData `S` do:
-        if pubtoaddr(P + (G * keccak(S * p))) has token:
-            store_key(p + keccak(S * p))
+### For receiving:
     
-```
+forall PrivateTransfer Events do:
+    
+if pubtoaddr(P + (G * keccak(S * p))) == stealthRecipient:
+    
+store_key(p + keccak(S * p))
+    
 
 
 ## Rationale
 `EIP-N` emerged from the need of having privacy-preserving ways to transfer ownership without revealing the recipient's identity. Tokens can reveal sensitive private information about the owner. While users might want to prove the ownership of a NFT-concert ticket, they might not want to reveal personal account-related information at the same time. The standardization of stealth address generation represents a significant step for privacy. Privacy-preserving solutions require standards to gain adoption, therefore it is critical to focus on generalisable ways of implementing related solutions.
     
-This extension standardizes the method to create and look-up Stealth Addresses. Users can send assets without having to interact with the recipient before. Stealth addresses allow only the recipients of token transfers to see that they were the recipients. 
+This extension standardizes the method to create and look-up Stealth Addresses. Users can send assets without having to interact with the recipient beforehand. Stealth addresses allow only the recipients of token transfers to see that they were the recipients. 
     
 
 ## Backwards Compatibility
