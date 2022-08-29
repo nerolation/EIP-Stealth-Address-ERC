@@ -55,26 +55,27 @@ interface ERC-N {
 }
 ```
 
-Stealth Address Generation
+#### Stealth Address Generation
 
 
-
-Sender Keypair    --> (s,S) | S = s * G // s represents a sender-generated secret
+Sender Keypair    --> (s,S) | S = s * G 
 
 Recipient Keypair --> (p,P) | P = p * G
 
+NOTE: `s` represents a sender-generated secret
 
-### For transfering:
+
+#### For transfering:
 
 sharedSecret    = s*P
 
-stealthAddress  = pubtoaddr(P + (G * keccak(sharedSecret)))   // ``to`` value
+stealthAddress  = pubtoaddr(P + (G * keccak(sharedSecret)))
 
-publishableData = G * s = S                                   // ``publishableData`` value
+publishableData = G * s = S
 
 
 
-### For receiving:
+#### For receiving:
 
 for all PrivateTransfer Events do:
 
