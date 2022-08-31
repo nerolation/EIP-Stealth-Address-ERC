@@ -98,10 +98,10 @@ This extension standardizes the method to create and look up Stealth Addresses. 
 
 
 ## Backwards Compatibility
-EIP--- is fully backward compatible with basic `ERC-721` contracts. `EIP---` implements the [`EIP-165`](./eip-165.md) standard.
+EIP--- is fully backward compatible with basic `ERC-721` contracts. `EIP---` implements the `EIP-165` standard.
 
 ## Reference Implementation
-You can find an implementation of this standard in  [./eip.sol](./eip.sol).
+You can find an implementation of this standard in [./eip.sol](https://github.com/Nerolation/EIP-Stealth-Address-ERC/blob/main/gnosisSafeModule.sol).
 
 ## Security Considerations
 TBD
