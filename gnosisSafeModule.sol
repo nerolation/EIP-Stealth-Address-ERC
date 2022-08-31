@@ -17,13 +17,27 @@ interface GnosisSafe {
         returns (bool success);
 }
 
+/// @dev Contract to emit Information required by the recipients of private Transfers to determine
+///      if they were the recipient of a transfer. Users can derive a key pair from the publishableData
+///      part and compare it to the stealthRecipient address. If machting, the respective users can be sure
+///      to have the corresponding private key to access the funds. 
+/// @notice PubStealthInfoContract MUST be a immutable implementation, shared accross every type of asset that 
+///         may be transfered using the stealth address mech
+contract PubStealthInfoContract {
+
+    event PrivateTransferInfo(address indexed stealthRecipient, bytes publishableData);
+
+    function emitPrivateTransferInfo(address stealthRecipient, bytes calldata publishableData) external {
+        emit PrivateTransferInfo(stealthRecipient, publishableData);
+    }
+}
+
 contract MyModule is Module {
-    address public stealthAddress;
+    PubStealthInfoContract public pubStealthInfoContract;
 
-    event PrivateTransfer(address indexed stealthRecipient, bytes publishableData);
 
-    constructor(address _owner, address _stealthAddress) {
-        bytes memory initializeParams = abi.encode(_owner, _stealthAddress);
+    constructor(address _owner, address _pubStealthInfoContract) {
+        bytes memory initializeParams = abi.encode(_owner, _pubStealthInfoContract);
         setUp(initializeParams);
     }
 
@@ -31,9 +45,8 @@ contract MyModule is Module {
     /// @param initializeParams Parameters of initialization encoded
     function setUp(bytes memory initializeParams) public override initializer {
         __Ownable_init();
-        (address _owner, address _stealthAddress) = abi.decode(initializeParams, (address, address));
-
-        stealthAddress = _stealthAddress;
+        (address _owner, address _pubStealthInfoContract) = abi.decode(initializeParams, (address, address));
+        pubStealthInfoContract = PubStealthInfoContract(_pubStealthInfoContract);
         setAvatar(_owner);
         setTarget(_owner);
         transferOwnership(_owner);
@@ -47,7 +60,7 @@ contract MyModule is Module {
         bytes calldata publishableData
     ) external payable {
         require(safe.execTransactionFromModule(to, amount, "", Enum.Operation.Call), "Could not execute ether transfer");
-        emit PrivateTransfer(to, publishableData);
+        pubStealthInfoContract.emitPrivateTransferInfo(to, publishableData);
     }    
 }
 
