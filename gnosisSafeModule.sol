@@ -52,7 +52,9 @@ contract MyModule is Module {
         transferOwnership(_owner);
     }
 
-    // TODO: Add ERC20, ERC721 etc. support
+    /// @dev Execute Transfer to stealth address
+    /// @param publishableData Is broadcasted by an immutable implementation of pubStealthInfoContract
+    /// TODO: Add ERC20, ERC721 etc. support
     function privateETHTransfer(
         GnosisSafe safe, 
         address payable to, 
