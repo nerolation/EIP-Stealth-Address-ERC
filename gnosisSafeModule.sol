@@ -5,7 +5,6 @@ pragma solidity >=0.7.0 <0.9.0;
 import "@gnosis.pm/zodiac/contracts/core/Module.sol";
 import "../contracts/EllipticCurve.sol";
 
-
 interface GnosisSafe {
     /// @dev Allows a Module to execute a Safe transaction without any further confirmations.
     /// @param to Destination address of module transaction.
@@ -16,6 +15,7 @@ interface GnosisSafe {
         external
         returns (bool success);
 }
+
 
 /// @dev Contract to emit Information required by the recipients of private Transfers to determine
 ///      if they were the recipient of a transfer. Users can derive a key pair from the publishableData
@@ -31,6 +31,7 @@ contract PubStealthInfoContract {
         emit PrivateTransferInfo(stealthRecipient, publishableData);
     }
 }
+
 
 contract MyModule is Module {
     PubStealthInfoContract public pubStealthInfoContract;
