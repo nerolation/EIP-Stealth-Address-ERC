@@ -1,5 +1,5 @@
 ---
-eip: 9999
+eip: 5564
 title: Stealth Address Wallets
 description: Stealth addresses for smart contract wallets
 author: Anton Wahrstätter (@Nerolation)
