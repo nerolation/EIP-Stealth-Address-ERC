@@ -29,8 +29,8 @@ contract EIP5564 {
     /// @dev Event emitted when a user updates their registered stealth keys
     event StealthKeyChanged(
         address indexed registrant,
-        uint256 spendingPubKeyPrefix,
-        uint256 spendingPubKey
+        uint256 pubKeyPrefix,
+        uint256 pubKey
     );
 
 
@@ -84,7 +84,7 @@ contract EIP5564 {
     /**
     * @dev Generates Stealth Address on behalve of a registered user.
     *  The caller executes this function locally to compute a stealth address
-    *  that can be accessed by the owner of the smart contract.
+    *  that can be accessed by recipient.
     *  Further, function computes a Public Key of the secret that can be published.
     * @notice The public key of the owner must be stored within the contract.
     */
