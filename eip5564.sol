@@ -21,9 +21,9 @@ contract EIP5564 {
     mapping(address => mapping(uint256 => uint256)) keys;
 
     /// @dev Event emitted when a user transfers assets to a stealth address
-    event PrivateTransferInfo(
+    event Annoucement(
         address indexed stealthRecipient, 
-        bytes publishableData
+        bytes announcement
     );
 
     /// @dev Event emitted when a user updates their registered stealth keys
@@ -76,8 +76,8 @@ contract EIP5564 {
     * @param stealthRecipient The address of the recipient of the transfer.
     * @param publishableData Information required by the recipient.
     */
-    function emitPrivateTransferInfo(address stealthRecipient, bytes calldata publishableData) external {
-        emit PrivateTransferInfo(stealthRecipient, publishableData);
+    function emitAnnoucement(address stealthRecipient, bytes calldata publishableData) external {
+        emit Annoucement(stealthRecipient, publishableData);
     }
 
 
