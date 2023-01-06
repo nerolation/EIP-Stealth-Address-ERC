@@ -1,0 +1,10 @@
+{
+  "name": "eip-stealth-address-erc",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "elliptic": "^6.5.4",
+    "noble-secp256k1": "^1.2.14"
+  }
+}
