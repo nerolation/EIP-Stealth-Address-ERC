@@ -92,7 +92,7 @@ console.log(`1000x privKey --> pubKey: ${deltaTime} milliseconds`);
 startTime = performance.now()
 for (let k = 0; k < numRuns; k++) {
   const P_scan = secp.getSharedSecret(noblePrivateKeys[k], P_noble);
-  // const P_scan = P2.multiply(noblePrivateKeys[k]);
+  // const P_scan = P_noble.multiply(noblePrivateKeys[k]);
 }
 endTime = performance.now()
 deltaTime = endTime - startTime;
