@@ -6,5 +6,8 @@
   "dependencies": {
     "elliptic": "^6.5.4",
     "noble-secp256k1": "^1.2.14"
+  },
+  "volta": {
+    "node": "18.13.0"
   }
 }
