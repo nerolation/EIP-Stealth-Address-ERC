@@ -2,7 +2,7 @@
 eip: TODO
 title: Stealth Meta-Address Registry
 description: A registry to map addresses to stealth meta-addresses
-author: Toni Wahrstätter (@nerolation), Matt Solomon (@mds1), Ben DiFrancesco (@apbendi), Vitalik Buterin <vitalik.buterin@ethereum.org>
+author: Matt Solomon (@mds1), Toni Wahrstätter (@nerolation), Ben DiFrancesco (@apbendi), Vitalik Buterin <vitalik.buterin@ethereum.org>
 discussions-to: TODO
 status: Draft
 type: Standards Track
@@ -16,7 +16,7 @@ This specification defines a standardized way of storing and retrieving an entit
 
 ## Motivation
 
-The standardization of non-interactive stealth address generation holds the potential to greatly enhance the privacy capabilities of Ethereum by enabling the recipient of a transfer to remain anonymous when receiving an asset. Making stealth addresses easy to use by providing a shared, standardized registry for make it even easier to non-interactively send and receive assets with stealth addresses.
+The standardization of  stealth address generation holds the potential to greatly enhance the privacy capabilities of Ethereum by enabling the recipient of a transfer to remain anonymous when receiving an asset. By introducing a central place for users to store their stealth meta-addresses EOAs and contracts can engage in programmatic ways, guranteeing interoperability accross a specific chain, while offering enough flexibilty to implement improved stealth address schemes in the future.
 
 ## Specification
 
@@ -24,7 +24,7 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
 
 This contract defines an `ERC5564Registry` that stores the stealth meta-address for entities. These entities may be identified by an address, ENS name, or other identifier. This MUST be a singleton contract, with one instance per chain.
 
-The contract is specified below. A one byte integer is used to identify the stealth address scheme. This integer is used to differentiate between different stealth address schemes. A mapping from the scheme ID to it's specification is maintained in **{TODO where to maintain it?}**.
+The contract is specified below. A one byte integer is used to identify the stealth address scheme. This integer is used to differentiate between different stealth address schemes. A mapping from the scheme ID to it's specification is maintained at [this](../assets/eip-5564/scheme_ids.md) location.
 
 ```solidity
 pragma solidity ^0.8.17;
@@ -89,7 +89,7 @@ Deployment is done using the keyless deployment method commonly known as Nick’
 
 ## Rationale
 
-TODO
+Having a central place for registering stealth meta-addresses has several benefits. It gurantees interoperability with other smart contracts, as they can easily retrieve and utilize the registered stealth meta-addresses. This enables applications such as ENS or Gnosis to use that information and integrate stealth addresses into their services. The registry contract ensures that users are not depended on off-chain sources to retrieve the stealth meta-address of another user. A registration can be interpreted as being ready to receive stealth address transactions, enabling users to indicate this ability. By deploying the registry as a singleton contract, multiple projects can access the same set of stealth meta-addresses, contributing to improved standardization.
 
 ## Backwards Compatibility
 
