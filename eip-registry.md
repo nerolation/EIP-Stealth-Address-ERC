@@ -16,7 +16,7 @@ This specification defines a standardized way of storing and retrieving an entit
 
 ## Motivation
 
-The standardization of  stealth address generation holds the potential to greatly enhance the privacy capabilities of Ethereum by enabling the recipient of a transfer to remain anonymous when receiving an asset. By introducing a central place for users to store their stealth meta-addresses EOAs and contracts can engage in programmatic ways, guranteeing interoperability accross a specific chain, while offering enough flexibilty to implement improved stealth address schemes in the future.
+The standardization of stealth address generation holds the potential to greatly enhance the privacy capabilities of Ethereum by enabling the recipient of a transfer to remain anonymous when receiving an asset. By introducing a central smart contract for users to store their stealth meta-addresseses, EOAs and contracts can programmatically engage in stealth interactions using a variety of stealth address scehemes.
 
 ## Specification
 
