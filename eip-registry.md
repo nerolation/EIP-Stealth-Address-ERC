@@ -90,9 +90,13 @@ Deployment is done using the keyless deployment method commonly known as Nick’
 ## Rationale
 
 Having a central smart contract for registering stealth meta-addresses has several benefits:
+
 1. It guarantees interoperability with other smart contracts, as they can easily retrieve and utilize the registered stealth meta-addresses. This enables applications such as ENS or Gnosis Safe to use that information and integrate stealth addresses into their services.
+
 2. It ensures that users are not dependent on off-chain sources to retrieve a user's stealth meta-address.
+
 3. Registration of a stealth meta-address in this contract provides a standard way for users to communicate that they're ready to participate in stealth interactions.
+
 4. By deploying the registry as a singleton contract, multiple projects can access the same set of stealth meta-addresses, contributing to improved standardization.
 
 ## Backwards Compatibility
