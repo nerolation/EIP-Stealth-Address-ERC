@@ -1,9 +1,9 @@
 ---
-eip: TODO
+eip: 6467
 title: Stealth Meta-Address Registry
 description: A registry to map addresses to stealth meta-addresses
 author: Matt Solomon (@mds1), Toni Wahrstätter (@nerolation), Ben DiFrancesco (@apbendi), Vitalik Buterin <vitalik.buterin@ethereum.org>
-discussions-to: TODO
+discussions-to: https://ethereum-magicians.org/t/stealth-meta-address-registry/12888
 status: Draft
 type: Standards Track
 category: ERC
@@ -16,7 +16,7 @@ This specification defines a standardized way of storing and retrieving an entit
 
 ## Motivation
 
-The standardization of stealth address generation holds the potential to greatly enhance the privacy capabilities of Ethereum by enabling the recipient of a transfer to remain anonymous when receiving an asset. By introducing a central smart contract for users to store their stealth meta-addresseses, EOAs and contracts can programmatically engage in stealth interactions using a variety of stealth address scehemes.
+The standardization of stealth address generation holds the potential to greatly enhance the privacy capabilities of Ethereum by enabling the recipient of a transfer to remain anonymous when receiving an asset. By introducing a central smart contract for users to store their stealth meta-addresses, EOAs and contracts can programmatically engage in stealth interactions using a variety of stealth address scehemes.
 
 ## Specification
 
