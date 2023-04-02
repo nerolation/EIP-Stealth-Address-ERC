@@ -19,18 +19,17 @@ interface IStakeManager {
         uint256 amount
     );
 
-    /// @return the deposit of the account
+    /// return the stake of the account
     function balanceOf(address account) external view returns (uint256);
 
     /**
-     * add to the account's stake - amount and delay
-     * any pending unstake is first cancelled.
+     * add to the account's stake - amount 
+     * @param staker the address of the staker.
      */
-    function addStake() external payable;
+    function addStake(address staker) external payable;
 
     /**
-     * withdraw from the (unlocked) stake.
-     * must first call unlockStake and wait for the unstakeDelay to pass
+     * withdraw the stake.
      * @param withdrawAddress the address to send withdrawn value.
      */
     function withdrawStake(address payable withdrawAddress) external;
